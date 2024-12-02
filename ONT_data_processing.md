@@ -21,7 +21,7 @@ module load python/3.10.4
 dorado basecaller --min-qscore 8 sup pod5/ > DL1_SodaLakes_basecalling.bam
 ```
 
-Basecalling output was:\n
+Basecalling output was:
 - Simplex reads basecalled: 1,891,493
 - Simplex reads filtered: 569,618
 
