@@ -20,3 +20,27 @@ module load python/3.10.4
 ####### Run your script #########################
 dorado basecaller --min-qscore 8 sup pod5/ > DL1_SodaLakes_basecalling.bam
 ```
+
+Basecalling output was:\n
+- Simplex reads basecalled: 1,891,493
+- Simplex reads filtered: 569,618
+
+### Convert .bam output to .fastq
+The output of `dorado basecaller` is *.bam file. To convert to fastq for next steps, I used `bedtools bamtofastq`
+
+```
+#!/bin/bash
+####### Reserve computing resources #############
+#SBATCH --time=24:00:00
+#SBATCH --mem=40G
+#SBATCH --partition=bigmem
+#SBATCH --gres=gpu:1
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=4
+
+####### Set environment variables ###############
+module load biobuilds/2017.11
+####### Run your script #########################
+bedtools bamtofastq -i DL1_SodaLakes_basecalling.bam -fq DL1_SodaLakes_LongReads.fastq
+```
