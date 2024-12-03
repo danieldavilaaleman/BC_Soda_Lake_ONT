@@ -96,7 +96,7 @@ The next step is polishing using, [MEDAKA](https://github.com/nanoporetech/medak
 
 ### Assembly polishing using Long-reads with MEDAKA
 
-The input for [MEDAKA](https://github.com/nanoporetech/medaka) are the filtered Long-reads used for the assembly and the assembly directory. I added the flag `--bacteria` to allow the usage of a research model that improve consensus accuracy to metagenomic samples. **NOTE:** Aseembly file needs to be unzipped.
+The input for [MEDAKA](https://github.com/nanoporetech/medaka) are the filtered Long-reads used for the assembly and the assembly directory. I added the flag `--bacteria` to allow the usage of a research model that improve consensus accuracy to metagenomic samples. **NOTE:** Aseembly file needs to be unzipped. This step is to solve structure erros (misassemblies), and the only errors remained will be single base pair substitutions, deletion or insertions.
 
 ```
 #!/bin/bash
@@ -116,6 +116,36 @@ gzip -d metaMDBG_assembly_DL1/contigs.fasta.gz
 medaka_consensus -i Filtered_500_10_DL1_SodaLakes_LongReads.fastq.gz -d metaMDBG_assembly_DL1/contigs.fasta \
 -o medaka.DL1.assembly.out -t 6 --bacteria
 ```
+
+### Assembly polishing using short-reads
+
+After Long-read polishing, I used two different softwares for polishing assembly using short-reads which its goal is to correct for those single bp errors left by the long-read polishing step,for example, long homopolymers tempt to be difficult to correct with Nanopore but not with Illumina sequencing data.
+
+The first step is polishing using [Polypolish](https://github.com/rrwick/Polypolish)
+
+```
+#!/bin/bash
+####### Reserve computing resources #############
+#SBATCH --time=12:00:00
+#SBATCH --mem=80G
+#SBATCH --partition=bigmem
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=4
+
+####### Set environment variables ###############
+module load biobuilds/2017.11
+####### Run your script #########################
+bwa index medaka.DL1.assembly.out/consensus.fasta
+bwa mem -t 16 -a medaka.DL1.assembly.out/consensus.fasta ../../../RB_6/SR/Li50127-RS-DL-1-RT_S16_R1.fastq.gz > alignments_1.sam
+bwa mem -t 16 -a medaka.DL1.assembly.out/consensus.fasta ../../../RB_6/SR/Li50127-RS-DL-1-RT_S16_R2.fastq.gz > alignments_2.sam
+
+###### Polypolish insert size filter ############
+polypolish filter --in1 alignments_1.sam --in2 alignments_2.sam --out1 filtered_1.sam --out2 filtered_2.sam
+polypolish polish medaka.DL1.assembly.out/consensus.fasta filtered_1.sam filtered_2.sam > medaka.polypolish.DL1.assembly.fasta
+```
+
+
 
 
 
