@@ -96,7 +96,7 @@ The next step is polishing using, [MEDAKA](https://github.com/nanoporetech/medak
 
 ### Assembly polishing using Long-reads with MEDAKA
 
-The input for [MEDAKA](https://github.com/nanoporetech/medaka) are the filtered Long-reads used for the assembly and the assembly directory. I added the flag `--bacteria` to allow the usage of a research model that improve consensus accuracy to metagenomic samples.
+The input for [MEDAKA](https://github.com/nanoporetech/medaka) are the filtered Long-reads used for the assembly and the assembly directory. I added the flag `--bacteria` to allow the usage of a research model that improve consensus accuracy to metagenomic samples. **NOTE:** Aseembly file needs to be unzipped.
 
 ```
 #!/bin/bash
@@ -112,7 +112,8 @@ The input for [MEDAKA](https://github.com/nanoporetech/medaka) are the filtered 
 ####### Set environment variables ###############
 module load python/3.10.4
 ####### Run your script #########################
-medaka_consensus -i Filtered_500_10_DL1_SodaLakes_LongReads.fastq.gz -d metaMDBG_assembly_DL1/contigs.fasta.gz \
+gzip -d metaMDBG_assembly_DL1/contigs.fasta.gz
+medaka_consensus -i Filtered_500_10_DL1_SodaLakes_LongReads.fastq.gz -d metaMDBG_assembly_DL1/contigs.fasta \
 -o medaka.DL1.assembly.out -t 6 --bacteria
 ```
 
