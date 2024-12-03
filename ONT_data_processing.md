@@ -1,9 +1,10 @@
+## Soda Lake microbiome assembly
 In this section, I present the analysis conducted on ONT sequencing data obtained from High Molecular Weight DNA extracted from microbiome culture 
 samples collected from Alberta Soda Lake. The analysis was performed using a R10.4 MinION flow cell.
 
 ### Basecalling
 The sequencing run was performed using the Ligation Sequencing Kit V14 (SQK-LSK114) and 1 µg of HMW DNA. 73 pod5 files were obtained (~12.5 Gb) an N50 aprrox 7.54Kb.
-For basecalling, I run the sup model and set a quality limit of 8 using GPU partition `bigmem gpu:1`
+For basecalling, I run [dorado basecaller](https://github.com/nanoporetech/dorado) with the `sup` model and set a quality limit of 8 using GPU partition `bigmem gpu:1`
 ```
 #!/bin/bash
 ####### Reserve computing resources #############
@@ -66,7 +67,7 @@ gunzip -c DL1_SodaLakes_LongReads.fastq.gz | chopper -q 10 -l 500 | gzip > Filte
 The output of the [chopper](https://github.com/wdecoster/chopper)filter is `Kept 1589641 reads out of 1904350 reads`
 
 ### Long-read Assembly
-The assembly was performed using `metaMDBG` software from [Benoit, G., Raguideau, S., James, R. et al. High-quality metagenome assembly from long accurate reads with metaMDBG. Nat Biotechnol 42, 1378–1383 (2024). https://doi.org/10.1038/s41587-023-01983-6](https://www.nature.com/articles/s41587-023-01983-6#Abs1) due to its version 1.0 can handle R10.4+ Nanopore data.
+The assembly was performed using [metaMDBG](https://github.com/GaetanBenoitDev/metaMDBG) software from [Benoit, G., Raguideau, S., James, R. et al. High-quality metagenome assembly from long accurate reads with metaMDBG. Nat Biotechnol 42, 1378–1383 (2024). https://doi.org/10.1038/s41587-023-01983-6](https://www.nature.com/articles/s41587-023-01983-6#Abs1) due to its version 1.0 can handle R10.4+ Nanopore data.
 
 ```
 #! /bin/bash
@@ -82,7 +83,7 @@ module load gcc/10.2.0 cmake/3.13.4 lib/zlib/1.2.11 openmpi/4.1.1-gnu
 metaMDBG asm --out-dir metaMDBG_assembly_DL1 --in-ont Filtered_500_10_DL1_SodaLakes_LongReads.fastq.gz --threads 8
 ```
 
-The output of `metaMDGB` got 11 circular contigs >1MB
+The output of [metaMDGB](https://github.com/GaetanBenoitDev/metaMDBG)got 11 circular contigs >1MB
         Run time:                   3h 32min 17sec
         Peak memory:                8.11041 GB
         Assembly length:            362362931
@@ -95,7 +96,7 @@ The next step is polishing using, [MEDAKA](https://github.com/nanoporetech/medak
 
 ### Assembly polishing using Long-reads with MEDAKA
 
-The input for medaka are the filtered Long-reads used for the assembly and the assembly directory. I added the flag `--bacteria` to allow the usage of a research model that improve consensus accuracy to metagenomic samples.
+The input for [MEDAKA](https://github.com/nanoporetech/medaka) are the filtered Long-reads used for the assembly and the assembly directory. I added the flag `--bacteria` to allow the usage of a research model that improve consensus accuracy to metagenomic samples.
 
 ```
 #!/bin/bash
