@@ -2,7 +2,7 @@ In this section, I present the analysis conducted on ONT sequencing data obtaine
 samples collected from Alberta Soda Lake. The analysis was performed using a R10.4 MinION flow cell.
 
 ### Basecalling
-The sequencing run was performed using the Ligation Sequencing Kit V14 (SQK-LSK114) and 1 µg of HMW DNA. 73 pod5 files were obtained (~12.5 Gb).
+The sequencing run was performed using the Ligation Sequencing Kit V14 (SQK-LSK114) and 1 µg of HMW DNA. 73 pod5 files were obtained (~12.5 Gb) an N50 aprrox 7.54Kb.
 For basecalling, I run the sup model and set a quality limit of 8 using GPU partition `bigmem gpu:1`
 ```
 #!/bin/bash
