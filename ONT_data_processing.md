@@ -46,7 +46,7 @@ bedtools bamtofastq -i DL1_SodaLakes_basecalling.bam -fq DL1_SodaLakes_LongReads
 ```
 
 ### Long-reads QC using chopper
-One recommendation from doi: 10.1371/journal.pcbi.1010905 suggest filter shorter reads (<1kb) and low quality (<10) before performing assembly.
+Following the recomendation on ["Assembling the perfect bacterial genome using Oxford Nanopore and Illumina sequencing"](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010905) suggest filter shorter reads (<1kb) and low quality (<10) before performing assembly.
 
 ```
 #! /bin/bash
