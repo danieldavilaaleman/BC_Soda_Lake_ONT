@@ -83,7 +83,7 @@ module load gcc/10.2.0 cmake/3.13.4 lib/zlib/1.2.11 openmpi/4.1.1-gnu
 metaMDBG asm --out-dir metaMDBG_assembly_DL1 --in-ont Filtered_500_10_DL1_SodaLakes_LongReads.fastq.gz --threads 8
 ```
 
-The output of [metaMDGB](https://github.com/GaetanBenoitDev/metaMDBG)got 11 circular contigs >1MB
+The output of [metaMDGB](https://github.com/GaetanBenoitDev/metaMDBG) got 11 circular contigs >1MB
         Run time:                   3h 32min 17sec
         Peak memory:                8.11041 GB
         Assembly length:            362362931
