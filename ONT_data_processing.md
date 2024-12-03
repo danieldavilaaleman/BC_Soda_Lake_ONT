@@ -82,7 +82,38 @@ module load gcc/10.2.0 cmake/3.13.4 lib/zlib/1.2.11 openmpi/4.1.1-gnu
 metaMDBG asm --out-dir metaMDBG_assembly_DL1 --in-ont Filtered_500_10_DL1_SodaLakes_LongReads.fastq.gz --threads 8
 ```
 
+The output of `metaMDGB` got 11 circular contigs >1MB
+        Run time:                   3h 32min 17sec
+        Peak memory:                8.11041 GB
+        Assembly length:            362362931
+        Contigs N50:                172643
+        Nb contigs:                 8393
+        Nb Contigs (>1Mb):          38
+        Nb circular contigs (>1Mb): 11
 
+The next step is polishing using, [MEDAKA](https://github.com/nanoporetech/medaka), [Polypolish](https://github.com/rrwick/Polypolish), and [Pypolca](https://github.com/gbouras13/pypolca).
+
+### Assembly polishing using Long-reads with MEDAKA
+
+The input for medaka are the filtered Long-reads used for the assembly and the assembly directory. I added the flag `--bacteria` to allow the usage of a research model that improve consensus accuracy to metagenomic samples.
+
+```
+#!/bin/bash
+####### Reserve computing resources #############
+#SBATCH --time=24:00:00
+#SBATCH --mem=40G
+#SBATCH --partition=bigmem
+#SBATCH --gres=gpu:1
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=4
+
+####### Set environment variables ###############
+module load python/3.10.4
+####### Run your script #########################
+medaka_consensus -i Filtered_500_10_DL1_SodaLakes_LongReads.fastq.gz -d metaMDBG_assembly_DL1/contigs.fasta.gz \
+-o medaka.DL1.assembly.out -t 6 --bacteria
+```
 
 
 
