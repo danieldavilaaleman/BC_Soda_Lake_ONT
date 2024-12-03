@@ -27,7 +27,7 @@ Basecalling output was:
 - Simplex reads filtered: 569,618
 
 ### Convert .bam output to .fastq
-The output of `dorado basecaller` is *.bam file. To convert to fastq for next steps, I used `bedtools bamtofastq`
+The output of [dorado basecaller](https://github.com/nanoporetech/dorado) is *.bam file. To convert to fastq for next steps, I used `bedtools bamtofastq`
 
 ```
 #!/bin/bash
@@ -64,7 +64,7 @@ conda activate lr_assemblers
 
 gunzip -c DL1_SodaLakes_LongReads.fastq.gz | chopper -q 10 -l 500 | gzip > Filtered_500_10_DL1_SodaLakes_LongReads.fastq.gz
 ```
-The output of the [chopper](https://github.com/wdecoster/chopper)filter is `Kept 1589641 reads out of 1904350 reads`
+The output of the [chopper](https://github.com/wdecoster/chopper) filter is `Kept 1589641 reads out of 1904350 reads`
 
 ### Long-read Assembly
 The assembly was performed using [metaMDBG](https://github.com/GaetanBenoitDev/metaMDBG) software from [Benoit, G., Raguideau, S., James, R. et al. High-quality metagenome assembly from long accurate reads with metaMDBG. Nat Biotechnol 42, 1378–1383 (2024). https://doi.org/10.1038/s41587-023-01983-6](https://www.nature.com/articles/s41587-023-01983-6#Abs1) due to its version 1.0 can handle R10.4+ Nanopore data.
