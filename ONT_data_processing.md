@@ -44,3 +44,25 @@ module load biobuilds/2017.11
 ####### Run your script #########################
 bedtools bamtofastq -i DL1_SodaLakes_basecalling.bam -fq DL1_SodaLakes_LongReads.fastq
 ```
+
+### Long-reads QC using chopper
+One recommendation from doi: 10.1371/journal.pcbi.1010905 suggest filter reads shorter than 1kb before performing assembly.
+
+```
+#! /bin/bash
+# ======================================================================
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=4gb
+#SBATCH --time=0-02:00:00
+#SBATCH --partition=cpu2023
+# ======================================================================
+source ~/software/miniconda3/etc/profile.d/conda.sh
+conda activate lr_assemblers
+
+gunzip -c DL1_SodaLakes_LongReads.fastq.gz | chopper -q 10 -l 500 | gzip > Filtered_500_10_DL1_SodaLakes_LongReads.fastq.gz
+```
+
+
+
