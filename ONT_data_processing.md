@@ -63,6 +63,11 @@ conda activate lr_assemblers
 
 gunzip -c DL1_SodaLakes_LongReads.fastq.gz | chopper -q 10 -l 500 | gzip > Filtered_500_10_DL1_SodaLakes_LongReads.fastq.gz
 ```
+The output of the chopper filter is `Kept 1589641 reads out of 1904350 reads`
+
+### Long-read Assembly
+The assembly was performed using `metaMDBG` software from [High-quality metagenome assembly from long accurate reads with metaMDBG. Nat Biotechnol 42, 1378–1383 (2024)] (https://www.nature.com/articles/s41587-023-01983-6#Abs1)
+
 
 
 
