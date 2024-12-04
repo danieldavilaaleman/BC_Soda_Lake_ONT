@@ -175,5 +175,45 @@ Stats BEFORE polishing:
 - Consensus Quality Before Polishing: 99.89
 - Consensus QV Before Polishing: 29.47
 
+### Binning and Refinement of the assembly
+
+For binning and refinement, I used [metaWRAP](https://github.com/bxlab/metaWRAP) tool. I will keep all the bins twith completness higher than 50% and contamination lower than 10% with the following command:
+
+```
+#!/bin/bash
+####### Reserve computing resources #############
+#SBATCH --time=96:00:00
+#SBATCH --mem=45G
+#SBATCH --partition=cpu2023
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=12
+
+####### Set environment variables ###############
+source ~/software/miniconda3/etc/profile.d/conda.sh
+conda activate metawrap-env
+###### Run your script #########################
+##GunZIp in case are in .gz
+gunzip -c ../../../RB_6/SR/Li50127-RS-DL-1-RT_S16_R1.fastq.gz > DL1_SR_R1.fastq
+gunzip -c ../../../RB_6/SR/Li50127-RS-DL-1-RT_S16_R2.fastq.gz > DL1_SR_R2.fastq
+
+## BINNING ##
+metawrap binning -o Binning_pypolca_DL1 -t 12 -a medaka.polypolish.polca.DL1.assembly.fasta/pypolca_corrected.fasta \
+--metabat2 --maxbin2 --concoct -m 40 DL1_SR_R1.fastq DL1_SR_R2.fastq
+
+## BIN REFINEMENT ##
+metawrap bin_refinement -o Refinement_pypolca_DL1 -t 12 -A Binning_pypolca_DL1/metabat2_bins/ \
+-B Binning_pypolca_DL1/maxbin2_bins/ -C Binning_pypolca_DL1/concoct_bins/ -c 50 -x 10 -m 40
+```
+
+
+
+
+
+
+
+
+
+
 
 
