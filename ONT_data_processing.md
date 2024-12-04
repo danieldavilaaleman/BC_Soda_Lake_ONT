@@ -1,6 +1,6 @@
 ## Soda Lake microbiome assembly
 In this section, I present the analysis conducted on ONT sequencing data obtained from High Molecular Weight DNA extracted from microbiome culture 
-samples collected from Alberta Soda Lake. The analysis was performed using a R10.4 MinION flow cell.
+samples collected from British Columbia, Soda Lakes. The analysis was performed using a R10.4 MinION flow cell.
 
 ### Basecalling
 The sequencing run was performed using the Ligation Sequencing Kit V14 (SQK-LSK114) and 1 µg of HMW DNA. 73 pod5 files were obtained (~12.5 Gb) an N50 aprrox 7.54Kb.
@@ -206,6 +206,11 @@ metawrap bin_refinement -o Refinement_pypolca_DL1 -t 12 -A Binning_pypolca_DL1/m
 -B Binning_pypolca_DL1/maxbin2_bins/ -C Binning_pypolca_DL1/concoct_bins/ -c 50 -x 10 -m 40
 ```
 
+metaWRAP Refinement module generates **62 "good" bins** with contaminations score < 10% and completeness score > 50%. Seven bins were classified as Cyanobacteria from CheckM dependency in metaWRAP. To know the number of contigs per bin in the assembled metagenome, I used to following unix command:
+
+```
+
+```
 
 
 
