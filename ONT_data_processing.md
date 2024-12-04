@@ -206,7 +206,7 @@ metawrap bin_refinement -o Refinement_pypolca_DL1 -t 12 -A Binning_pypolca_DL1/m
 -B Binning_pypolca_DL1/maxbin2_bins/ -C Binning_pypolca_DL1/concoct_bins/ -c 50 -x 10 -m 40
 ```
 
-metaWRAP Refinement module generates **62 "good" bins** with contaminations score < 10% and completeness score > 50%. Seven bins were classified as Cyanobacteria from CheckM dependency in metaWRAP. To know the number of contigs per bin in the assembled metagenome, I used to following unix command:
+metaWRAP Refinement module generates **62 "good" bins** with contaminations score < 10% and completeness score > 50%. Seven bins were classified as Cyanobacteria from [CheckM](https://github.com/Ecogenomics/CheckM) dependency in metaWRAP. To know the number of contigs per bin in the assembled metagenome, I used to following unix command:
 
 ```
 
