@@ -145,6 +145,26 @@ polypolish filter --in1 alignments_1.sam --in2 alignments_2.sam --out1 filtered_
 polypolish polish medaka.DL1.assembly.out/consensus.fasta filtered_1.sam filtered_2.sam > medaka.polypolish.DL1.assembly.fasta
 ```
 
+The second step was using [Pypolca](https://github.com/gbouras13/pypolca) on top of the polypolish output.
+
+```
+#!/bin/bash
+####### Reserve computing resources #############
+#SBATCH --time=12:00:00
+#SBATCH --mem=250G
+#SBATCH --partition=bigmem
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=12
+
+####### Set environment variables ###############
+source ~/software/miniconda3/etc/profile.d/conda.sh
+conda activate pypolca
+####### Run your script #########################
+pypolca run -a medaka.polypolish.DL1.assembly.fasta \
+-1 ../../../RB_6/SR/Li50127-RS-DL-1-RT_S16_R1.fastq.gz -2 ../../../RB_6/SR/Li50127-RS-DL-1-RT_S16_R2.fastq.gz \
+-t 12 -o medaka.polypolish.polca.DL1.assembly.fasta --careful
+```
 
 
 
