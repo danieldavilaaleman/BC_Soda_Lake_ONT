@@ -87,9 +87,9 @@ The output of [metaMDGB](https://github.com/GaetanBenoitDev/metaMDBG) got 11 cir
 |Run time:| 3h 32min 17sec |
 |----------|-------------|
 |Peak memory: | 8.11041 GB |
-|Assembly length: | 362362931 |
-|Contigs N50: | 172643 |
-|Nb contigs: | 8393|
+|Assembly length: | 362,362,931 |
+|Contigs N50: | 172,643 |
+|Nb contigs: | 8,393|
 |Nb Contigs (>1Mb): | 38|
 |Nb circular contigs (>1Mb): | 11|
 
@@ -169,12 +169,13 @@ pypolca run -a medaka.polypolish.DL1.assembly.fasta \
 
 The report output of pypolca is the following:
 
-Stats BEFORE polishing:
-- Substitution Errors Found: 296,847
-- Insertion/Deletion Errors Found: 113,225
-- Assembly Size: 362,803,214
-- Consensus Quality Before Polishing: 99.89
-- Consensus QV Before Polishing: 29.47
+|Stats BEFORE polishing| Value |
+|--------|--------|
+|Substitution Errors Found:| 296,847|
+|Insertion/Deletion Errors Found:| 113,225|
+|Assembly Size:| 362,803,214|
+|Consensus Quality Before Polishing:| 99.89|
+|Consensus QV Before Polishing:| 29.47|
 
 ### Binning and Refinement of the assembly
 
