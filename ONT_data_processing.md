@@ -212,11 +212,7 @@ metaWRAP Refinement module generates **62 "good" bins** with contaminations scor
 for bin in *.fa;do grep ">" $bin | wc -l;done
 ```
 
-
-
-
-
-
+This shows that eight bins contains one single circular contig.
 
 
 
