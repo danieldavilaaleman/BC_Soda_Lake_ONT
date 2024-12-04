@@ -167,7 +167,7 @@ pypolca run -a medaka.polypolish.DL1.assembly.fasta \
 ```
 
 The report output of pypolca is the following:
-- Stats BEFORE polishing:
+Stats BEFORE polishing:
 - Substitution Errors Found: 296,847
 - Insertion/Deletion Errors Found: 113,225
 - Assembly Size: 362,803,214
