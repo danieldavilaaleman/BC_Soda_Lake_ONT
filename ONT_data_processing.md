@@ -166,6 +166,13 @@ pypolca run -a medaka.polypolish.DL1.assembly.fasta \
 -t 12 -o medaka.polypolish.polca.DL1.assembly.fasta --careful
 ```
 
+The report output of pypolca is the following:
+- Stats BEFORE polishing:
+- Substitution Errors Found: 296,847
+- Insertion/Deletion Errors Found: 113,225
+- Assembly Size: 362,803,214
+- Consensus Quality Before Polishing: 99.89
+- Consensus QV Before Polishing: 29.47
 
 
 
