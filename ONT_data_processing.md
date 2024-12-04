@@ -85,6 +85,7 @@ metaMDBG asm --out-dir metaMDBG_assembly_DL1 --in-ont Filtered_500_10_DL1_SodaLa
 
 The output of [metaMDGB](https://github.com/GaetanBenoitDev/metaMDBG) got 11 circular contigs >1MB
 |Run time: | 3h 32min 17sec |
+|----------|-------------|
 |Peak memory: | 8.11041 GB |
 |Assembly length: | 362362931 |
 |Contigs N50: | 172643 |
