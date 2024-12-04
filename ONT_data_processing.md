@@ -84,13 +84,13 @@ metaMDBG asm --out-dir metaMDBG_assembly_DL1 --in-ont Filtered_500_10_DL1_SodaLa
 ```
 
 The output of [metaMDGB](https://github.com/GaetanBenoitDev/metaMDBG) got 11 circular contigs >1MB
-- Run time:                   3h 32min 17sec
-- Peak memory:                8.11041 GB
-- Assembly length:            362362931
-- Contigs N50:                172643
-- Nb contigs:                 8393
-- Nb Contigs (>1Mb):          38
-- Nb circular contigs (>1Mb): 11
+|Run time:|3h 32min 17sec|
+|Peak memory:|8.11041 GB|
+|Assembly length:|362362931|
+|Contigs N50:|172643|
+|Nb contigs:|8393|
+|Nb Contigs (>1Mb):|38|
+|Nb circular contigs (>1Mb):| 11|
 
 The next step is polishing using, [MEDAKA](https://github.com/nanoporetech/medaka), [Polypolish](https://github.com/rrwick/Polypolish), and [Pypolca](https://github.com/gbouras13/pypolca).
 
