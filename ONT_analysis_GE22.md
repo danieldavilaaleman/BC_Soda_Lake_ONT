@@ -54,6 +54,8 @@ module load biobuilds/2017.11
 bedtools bamtofastq -i GE22_SodaLakes_basecalling.bam -fq GE22_SodaLakes_LongReads.fastq
 ```
 
+### NOTE: module biobuilds/2017.11 were not available anymore after ARC software update. I dowloaded badtools.static.binary [version2.30.0](https://github.com/arq5x/bedtools2/releases) in my ```/bin``` diractory 
+
 
 
 
