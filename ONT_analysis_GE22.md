@@ -60,23 +60,20 @@ bedtools bamtofastq -i GE22_SodaLakes_basecalling.bam -fq GE22_SodaLakes_LongRea
 # Long-read QC and length trimming
 I used chopper for filtering <8 QC reads and <500 bp
 ```
-       │ File: run_longreadQC.sbatch
-───────┼──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-   1   │ #! /bin/bash
-   2   │ # ======================================================================
-   3   │ #SBATCH --nodes=1
-   4   │ #SBATCH --ntasks=1
-   5   │ #SBATCH --cpus-per-task=1
-   6   │ #SBATCH --mem=4gb
-   7   │ #SBATCH --time=0-02:00:00
-   8   │ #SBATCH --partition=cpu2023
-   9   │ # ======================================================================
-  10   │ source ~/software/miniconda3/etc/profile.d/conda.sh
-  11   │ conda activate lr_assemblers
-  12   │ gzip GE22_SodaLakes_LongReads.fastq
-  13   │ 
-  14   │ gunzip -c GE22_SodaLakes_LongReads.fastq.gz | chopper -q 10 -l 500 | gzip > Filtered_500_10_GE22_SodaLakes_LongReads.fastq.gz
+#! /bin/bash
+# ======================================================================
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=4gb
+#SBATCH --time=0-02:00:00
+#SBATCH --partition=cpu2023
+# ======================================================================
+source ~/software/miniconda3/etc/profile.d/conda.sh
+conda activate lr_assemblers
+gzip GE22_SodaLakes_LongReads.fastq
 
+gunzip -c GE22_SodaLakes_LongReads.fastq.gz | chopper -q 10 -l 500 | gzip > Filtered_500_10_GE22_SodaLakes_LongReads.fastq.gz
 ```
 
 
