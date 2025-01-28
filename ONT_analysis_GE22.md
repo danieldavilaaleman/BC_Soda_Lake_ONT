@@ -31,7 +31,8 @@ The output generated for dorado
 [2025-01-27 18:44:56.533] [info] > Basecalled @ Samples/s: 1.487425e+07
 [2025-01-27 18:44:57.424] [info] > Finished
 ```
-
+# Convert .bam to fastq
+The next step is to convert [dorado]()
 
 
 
