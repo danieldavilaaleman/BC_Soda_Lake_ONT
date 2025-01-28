@@ -32,7 +32,8 @@ The output generated for dorado
 [2025-01-27 18:44:57.424] [info] > Finished
 ```
 # Convert .bam to fastq
-The next step is to convert [dorado]()
+The next step is to convert [dorado](https://github.com/nanoporetech/dorado) .bam file to fastq using [bedtools](https://bedtools.readthedocs.io/en/latest/content/tools/bamtofastq.html)
+
 
 
 
