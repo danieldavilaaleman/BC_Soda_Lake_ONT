@@ -58,7 +58,7 @@ bedtools bamtofastq -i GE22_SodaLakes_basecalling.bam -fq GE22_SodaLakes_LongRea
 
 
 # Long-read QC and length trimming
-I used chopper for filtering <8 QC reads and <500 bp
+I used [chopper](https://github.com/wdecoster/chopper) for filtering <8 QC reads and <500 bp
 ```
 #! /bin/bash
 # ======================================================================
