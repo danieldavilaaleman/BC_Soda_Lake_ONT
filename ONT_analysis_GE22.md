@@ -17,3 +17,37 @@ module load python/3.10.4
 ####### Run your script #########################
 dorado basecaller --min-qscore 8 sup pod5/ > GE22_SodaLakes_basecalling.bam
 ```
+
+The output generated for dorado
+```
+[2025-01-27 14:26:20.374] [info]  - downloading dna_r10.4.1_e8.2_400bps_sup@v4.3.0 with curl
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  105M  100  105M    0     0  20.9M      0  0:00:05  0:00:05 --:--:-- 23.5M
+[2025-01-27 14:26:27.845] [info] > Creating basecall pipeline
+[2025-01-27 14:26:40.375] [info]  - set batch size for cuda:0 to 1664
+[2025-01-27 18:44:56.531] [info] > Simplex reads basecalled: 2137384
+[2025-01-27 18:44:56.533] [info] > Simplex reads filtered: 331000
+[2025-01-27 18:44:56.533] [info] > Basecalled @ Samples/s: 1.487425e+07
+[2025-01-27 18:44:57.424] [info] > Finished
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
