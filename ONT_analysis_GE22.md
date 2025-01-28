@@ -31,10 +31,28 @@ The output generated for dorado
 [2025-01-27 18:44:56.533] [info] > Basecalled @ Samples/s: 1.487425e+07
 [2025-01-27 18:44:57.424] [info] > Finished
 ```
+-  Total of reads basecalled: 2,137,384
+-  Total of reads filtered: 331,000
+
 # Convert .bam to fastq
-The next step is to convert [dorado](https://github.com/nanoporetech/dorado) .bam file to fastq using [bedtools](https://bedtools.readthedocs.io/en/latest/content/tools/bamtofastq.html)
+The next step is to convert [dorado](https://github.com/nanoporetech/dorado) .bam file to fastq using [bedtools bamtofastq](https://bedtools.readthedocs.io/en/latest/content/tools/bamtofastq.html)
 
+```
+#!/bin/bash
+####### Reserve computing resources #############
+#SBATCH --time=24:00:00
+#SBATCH --mem=40G
+#SBATCH --partition=bigmem
+#SBATCH --gres=gpu:1
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=4
 
+####### Set environment variables ###############
+module load biobuilds/2017.11
+####### Run your script #########################
+bedtools bamtofastq -i DL1_SodaLakes_basecalling.bam -fq DL1_SodaLakes_LongReads.fastq
+```
 
 
 
