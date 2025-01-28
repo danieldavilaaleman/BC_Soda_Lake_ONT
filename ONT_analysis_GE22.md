@@ -51,7 +51,7 @@ The next step is to convert [dorado](https://github.com/nanoporetech/dorado) .ba
 ####### Set environment variables ###############
 module load biobuilds/2017.11
 ####### Run your script #########################
-bedtools bamtofastq -i DL1_SodaLakes_basecalling.bam -fq DL1_SodaLakes_LongReads.fastq
+bedtools bamtofastq -i GE22_SodaLakes_basecalling.bam -fq GE22_SodaLakes_LongReads.fastq
 ```
 
 
