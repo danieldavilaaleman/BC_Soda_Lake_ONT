@@ -56,7 +56,7 @@ bedtools bamtofastq -i GE22_SodaLakes_basecalling.bam -fq GE22_SodaLakes_LongRea
 
 #### NOTE: module biobuilds/2017.11 were not available anymore after ARC software update. I dowloaded badtools.static.binary [version2.30.0](https://github.com/arq5x/bedtools2/releases) on my ```/bin``` directory 
 
-### ARC Dmitri option:  Another option is to source bioconda - This comes with the update in ARC
+#### ARC Dmitri option:  Another option is to source bioconda - This comes with the update in ARC
 ```
 source /global/software/bioconda/init-2024-10
 ```
@@ -82,7 +82,7 @@ cat GE22_SodaLakes_LongReads.fastq | chopper -q 10 -l 500 | gzip > Filtered_500_
 The output of chopper was:
 
 Kept 3,186,680 reads out of 4,307,968 reads 
-### NOTE: that this number is different from dorado basecalling Simplex reads basecalled. Why? 
+#### NOTE: The input read number is different from dorado basecalling Simplex reads basecalled output (4,307,968 vs 2,137,384). Why? 
 Possible answer [here](https://github.com/nanoporetech/dorado/issues/992)
 
 # Long-reads Assembly
