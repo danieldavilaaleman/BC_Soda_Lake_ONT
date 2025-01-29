@@ -81,7 +81,26 @@ cat GE22_SodaLakes_LongReads.fastq | chopper -q 10 -l 500 | gzip > Filtered_500_
 
 The output of chopper was:
 
-Kept 3,186,680 reads out of 4,307,968 reads ### NOTE: that this number is different from dorado basecalling Simplex reads basecalled.
+Kept 3,186,680 reads out of 4,307,968 reads ### NOTE: that this number is different from dorado basecalling Simplex reads basecalled. Why?
+
+# Long-reads Assembly
+
+Assembly was performed using [metaMDBG](https://github.com/GaetanBenoitDev/metaMDBG) tool 
+
+```
+#! /bin/bash
+# ======================================================================
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=40gb
+#SBATCH --time=3-00:00:00
+#SBATCH --partition=cpu2023
+# ======================================================================
+module load gcc/10.2.0 cmake/3.13.4 lib/zlib/1.2.11 openmpi/4.1.1-gnu
+metaMDBG asm --out-dir metaMDBG_assembly_GE22 --in-ont Filtered_500_10_GE22_SodaLakes_LongReads.fastq.gz --threads 8
+```
+
 
 
 
