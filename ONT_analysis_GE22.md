@@ -83,7 +83,8 @@ The output of chopper was:
 
 Kept 3,186,680 reads out of 4,307,968 reads 
 #### NOTE: The input read number is different from dorado basecalling Simplex reads basecalled output (4,307,968 vs 2,137,384). Why? 
-Possible answer [here](https://github.com/nanoporetech/dorado/issues/992)
+Possible answer [here](https://github.com/nanoporetech/dorado/issues/992) 
+Solution output: 33938 - Does this make sense?
 
 # Long-reads Assembly
 
