@@ -79,6 +79,11 @@ conda activate lr_assemblers
 cat GE22_SodaLakes_LongReads.fastq | chopper -q 10 -l 500 | gzip > Filtered_500_10_GE22_SodaLakes_LongReads.fastq.gz
 ```
 
+The output of chopper was:
+
+Kept 3,186,680 reads out of 4,307,968 reads ### NOTE: that this number is different from dorado basecalling Simplex reads basecalled.
+
+
 
 
 
