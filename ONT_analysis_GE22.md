@@ -84,6 +84,7 @@ The output of chopper was:
 Kept 3,186,680 reads out of 4,307,968 reads 
 #### NOTE: The input read number is different from dorado basecalling Simplex reads basecalled output (4,307,968 vs 2,137,384). Why? 
 Possible answer [here](https://github.com/nanoporetech/dorado/issues/992) 
+
 Solution output: 33938 - Does this make sense?
 
 # Long-reads Assembly
@@ -104,6 +105,10 @@ module load gcc/10.2.0 cmake/3.13.4 lib/zlib/1.2.11 openmpi/4.1.1-gnu
 metaMDBG asm --out-dir metaMDBG_assembly_GE22 --in-ont Filtered_500_10_GE22_SodaLakes_LongReads.fastq.gz --threads 8
 ```
 
+[metaMDBG](https://github.com/GaetanBenoitDev/metaMDBG) tool output:
+
+- Total read bps:  28,579,858,182
+- N50 read length: 12,846
 
 
 
