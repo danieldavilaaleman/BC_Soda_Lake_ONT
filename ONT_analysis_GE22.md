@@ -54,7 +54,7 @@ The next step is to convert [dorado](https://github.com/nanoporetech/dorado) .ba
 bedtools bamtofastq -i GE22_SodaLakes_basecalling.bam -fq GE22_SodaLakes_LongReads.fastq
 ```
 
-#### NOTE: module biobuilds/2017.11 were not available anymore after ARC software update. I dowloaded badtools.static.binary [version2.30.0](https://github.com/arq5x/bedtools2/releases) in my ```/bin``` directory 
+#### NOTE: module biobuilds/2017.11 were not available anymore after ARC software update. I dowloaded badtools.static.binary [version2.30.0](https://github.com/arq5x/bedtools2/releases) on my ```/bin``` directory 
 
 ### ARC Dmitri option:  Another option is to source bioconda - This comes with the update in ARC
 ```
@@ -62,7 +62,7 @@ source /global/software/bioconda/init-2024-10
 ```
 
 # Long-read QC and length trimming
-I used [chopper](https://github.com/wdecoster/chopper) for filtering <8 QC reads and <500 bp
+I used [chopper](https://github.com/wdecoster/chopper) for filtering <10 QC reads and <500 bp
 ```
 #! /bin/bash
 # ======================================================================
@@ -75,9 +75,8 @@ I used [chopper](https://github.com/wdecoster/chopper) for filtering <8 QC reads
 # ======================================================================
 source ~/software/miniconda3/etc/profile.d/conda.sh
 conda activate lr_assemblers
-gzip GE22_SodaLakes_LongReads.fastq
 
-gunzip -c GE22_SodaLakes_LongReads.fastq.gz | chopper -q 10 -l 500 | gzip > Filtered_500_10_GE22_SodaLakes_LongReads.fastq.gz
+cat GE22_SodaLakes_LongReads.fastq | chopper -q 10 -l 500 | gzip > Filtered_500_10_GE22_SodaLakes_LongReads.fastq.gz
 ```
 
 
