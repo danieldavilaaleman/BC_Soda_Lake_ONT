@@ -56,6 +56,10 @@ bedtools bamtofastq -i GE22_SodaLakes_basecalling.bam -fq GE22_SodaLakes_LongRea
 
 #### NOTE: module biobuilds/2017.11 were not available anymore after ARC software update. I dowloaded badtools.static.binary [version2.30.0](https://github.com/arq5x/bedtools2/releases) in my ```/bin``` directory 
 
+### ARC Dmitri option:  Another option is to source bioconda - This comes with the update in ARC
+```
+source /global/software/bioconda/init-2024-10
+```
 
 # Long-read QC and length trimming
 I used [chopper](https://github.com/wdecoster/chopper) for filtering <8 QC reads and <500 bp
