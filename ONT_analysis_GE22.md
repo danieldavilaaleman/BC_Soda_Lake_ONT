@@ -119,7 +119,29 @@ metaMDBG asm --out-dir metaMDBG_assembly_GE22 --in-ont Filtered_500_10_GE22_Soda
 |Nb Contigs (>1Mb):|16 |
 |Nb circular contigs (>1Mb):| 6 |
 
+The next step is polishing using, [MEDAKA](https://github.com/nanoporetech/medaka), [Polypolish](https://github.com/rrwick/Polypolish), and [Pypolca](https://github.com/gbouras13/pypolca).
 
+### Assembly polishing using Long-reads with MEDAKA
+
+The input for [MEDAKA](https://github.com/nanoporetech/medaka) are the filtered Long-reads used for the assembly and the assembly directory. I added the flag `--bacteria` to allow the usage of a research model that improve consensus accuracy to metagenomic samples. This step is to solve structure erros (misassemblies), and the only errors remained will be single base pair substitutions, deletion or insertions.  **NOTE:** Aseembly file needs to be unzipped.
+
+```
+#!/bin/bash
+####### Reserve computing resources #############
+#SBATCH --time=24:00:00
+#SBATCH --mem=40G
+#SBATCH --partition=bigmem
+#SBATCH --gres=gpu:1
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+
+####### Set environment variables ###############
+module load python/3.10.4
+####### Run your script #########################
+gzip -d metaMDBG_assembly_GE22/contigs.fasta.gz
+medaka_consensus -i Filtered_500_10_GE22_SodaLakes_LongReads.fastq.gz -d metaMDBG_assembly_GE22/contigs.fasta \
+-o medaka.GE22.assembly.out -t 10 --bacteria
+```
 
 
 
