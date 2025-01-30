@@ -109,6 +109,7 @@ metaMDBG asm --out-dir metaMDBG_assembly_GE22 --in-ont Filtered_500_10_GE22_Soda
 
 - Total read bps:  28,579,858,182
 - N50 read length: 12,846
+  
 | Run time: | 23h 44min 16sec|
 |----------- | -------------- |
 |Peak memory: |9.94197 GB |
