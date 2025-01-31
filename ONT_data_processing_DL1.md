@@ -97,8 +97,9 @@ The next step is polishing using, [MEDAKA](https://github.com/nanoporetech/medak
 
 ### Assembly polishing using Long-reads with MEDAKA
 
-The input for [MEDAKA](https://github.com/nanoporetech/medaka) are the filtered Long-reads used for the assembly and the assembly directory. I added the flag `--bacteria` to allow the usage of a research model that improve consensus accuracy to metagenomic samples. **NOTE:** Aseembly file needs to be unzipped. This step is to solve structure erros (misassemblies), and the only errors remained will be single base pair substitutions, deletion or insertions.
+The input for [MEDAKA](https://github.com/nanoporetech/medaka) are the filtered Long-reads used for the assembly and the assembly directory. I added the flag `--bacteria` to allow the usage of a research model that improve consensus accuracy to metagenomic samples.  This step is to solve structure erros (misassemblies), and the only errors remained will be single base pair substitutions, deletion or insertions.
 
+**NOTE:** Aseembly file needs to be unzipped.
 ```
 #!/bin/bash
 ####### Reserve computing resources #############
