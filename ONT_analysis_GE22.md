@@ -145,6 +145,65 @@ medaka_consensus -i Filtered_500_10_GE22_SodaLakes_LongReads.fastq.gz -d metaMDB
 -o medaka.GE22.assembly.out -t 10 --bacteria
 ```
 
+### Assembly polishing using short-reads
+
+After Long-read polishing, I used two different softwares for polishing assembly using short-reads which its goal is to correct for those single bp errors left by the long-read polishing step,for example, long homopolymers tempt to be difficult to correct with Nanopore but not with Illumina sequencing data.
+
+The first step is polishing using [Polypolish](https://github.com/rrwick/Polypolish)
+
+```
+#!/bin/bash
+####### Reserve computing resources #############
+#SBATCH --time=12:00:00
+#SBATCH --mem=80G
+#SBATCH --partition=bigmem
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=4
+
+####### Set environment variables ###############
+source /global/software/bioconda/init-2024-10  #Notice the use of bioconda global software
+
+####### Run your script #########################
+bwa index medaka.GE22.assembly.out/consensus.fasta
+bwa mem -t 16 -a medaka.GE22.assembly.out/consensus.fasta /work/ebg_lab/gm/RS/RB_3/SR/Li49155-RS-GE2022-RT_S5_R1.fastq.gz > alignments_1.sam
+bwa mem -t 16 -a medaka.GE22.assembly.out/consensus.fasta /work/ebg_lab/gm/RS/RB_3/SR/Li49155-RS-GE2022-RT_S5_R2.fastq.gz > alignments_2.sam
+
+###### Polypolish insert size filter ############
+polypolish filter --in1 alignments_1.sam --in2 alignments_2.sam --out1 filtered_1.sam --out2 filtered_2.sam
+polypolish polish medaka.GE22.assembly.out/consensus.fasta filtered_1.sam filtered_2.sam > medaka.polypolish.GE22.assembly.fasta
+```
+
+The second step was using [Pypolca](https://github.com/gbouras13/pypolca) on top of the polypolish output.
+
+```
+#!/bin/bash
+####### Reserve computing resources #############
+#SBATCH --time=12:00:00
+#SBATCH --mem=250G
+#SBATCH --partition=bigmem
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=12
+
+####### Set environment variables ###############
+source ~/software/miniconda3/etc/profile.d/conda.sh
+conda activate pypolca
+####### Run your script #########################
+pypolca run -a medaka.polypolish.DL1.assembly.fasta \
+-1 ../../../RB_6/SR/Li50127-RS-DL-1-RT_S16_R1.fastq.gz -2 ../../../RB_6/SR/Li50127-RS-DL-1-RT_S16_R2.fastq.gz \
+-t 12 -o medaka.polypolish.polca.DL1.assembly.fasta --careful
+```
+
+The report output of pypolca is the following:
+
+|Stats BEFORE polishing| Value |
+|--------|--------|
+|Substitution Errors Found:| 296,847|
+|Insertion/Deletion Errors Found:| 113,225|
+|Assembly Size:| 362,803,214|
+|Consensus Quality Before Polishing:| 99.89|
+|Consensus QV Before Polishing:| 29.47|
 
 
 
