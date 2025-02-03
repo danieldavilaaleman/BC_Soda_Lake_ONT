@@ -174,6 +174,13 @@ polypolish filter --in1 alignments_1.sam --in2 alignments_2.sam --out1 filtered_
 polypolish polish medaka.GE22.assembly.out/consensus.fasta filtered_1.sam filtered_2.sam > medaka.polypolish.GE22.assembly.fasta
 ```
 
+The output of Polypolish filter:
+  59   |Finished! (2025-02-03 12:03:16)
+  60   │ Alignments before filtering: 433,159,301
+  61   │ Alignments after filtering:  368,148,351
+  62   │ 
+  63   │ Time to run: 1:13:09.315608
+
 The second step was using [Pypolca](https://github.com/gbouras13/pypolca) on top of the polypolish output.
 
 ```
