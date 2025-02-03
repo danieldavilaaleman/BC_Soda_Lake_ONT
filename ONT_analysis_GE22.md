@@ -175,11 +175,14 @@ polypolish polish medaka.GE22.assembly.out/consensus.fasta filtered_1.sam filter
 ```
 
 The output of Polypolish filter:
-  59   |Finished! (2025-02-03 12:03:16)
-  60   │ Alignments before filtering: 433,159,301
-  61   │ Alignments after filtering:  368,148,351
-  62   │ 
-  63   │ Time to run: 1:13:09.315608
+
+```
+Finished! (2025-02-03 12:03:16)
+Alignments before filtering: 433,159,301
+Alignments after filtering:  368,148,351
+
+Time to run: 1:13:09.315608
+```
 
 The output of Polypolish polish was too long and only got the running time:
 
