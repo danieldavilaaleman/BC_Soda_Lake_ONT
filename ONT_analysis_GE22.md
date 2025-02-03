@@ -186,7 +186,8 @@ Time to run: 1:13:09.315608
 
 The output of Polypolish polish was too long and only got the running time:
 
-  Time to run: 0:49:25.735863
+  
+  ```Time to run: 0:49:25.735863```
 
 The second step was using [Pypolca](https://github.com/gbouras13/pypolca) on top of the polypolish output.
 
