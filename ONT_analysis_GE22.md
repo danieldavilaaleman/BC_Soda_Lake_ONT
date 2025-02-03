@@ -201,9 +201,9 @@ The second step was using [Pypolca](https://github.com/gbouras13/pypolca) on top
 source ~/software/miniconda3/etc/profile.d/conda.sh
 conda activate pypolca
 ####### Run your script #########################
-pypolca run -a medaka.polypolish.DL1.assembly.fasta \
--1 ../../../RB_6/SR/Li50127-RS-DL-1-RT_S16_R1.fastq.gz -2 ../../../RB_6/SR/Li50127-RS-DL-1-RT_S16_R2.fastq.gz \
--t 12 -o medaka.polypolish.polca.DL1.assembly.fasta --careful
+pypolca run -a medaka.polypolish.GE22.assembly.fasta \
+-1 /work/ebg_lab/gm/RS/RB_3/SR/Li49155-RS-GE2022-RT_S5_R1.fastq.gz -2 /work/ebg_lab/gm/RS/RB_3/SR/Li49155-RS-GE2022-RT_S5_R2.fastq.gz \
+-t 12 -o medaka.polypolish.polca.GE22.assembly.fasta --careful
 ```
 
 The report output of pypolca is the following:
