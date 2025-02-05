@@ -218,7 +218,7 @@ The report output of pypolca is the following:
 |Insertion/Deletion Errors Found:| 273,951 |
 |Assembly Size:| 449,890,817|
 |Consensus Quality Before Polishing:| 99.65|
-|Consensus QV Before Polishing:| 29.52|
+|Consensus QV Before Polishing:| 24.52|
 
 
 
