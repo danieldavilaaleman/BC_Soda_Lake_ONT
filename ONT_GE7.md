@@ -19,7 +19,7 @@ For basecalling, I run [dorado basecaller](https://github.com/nanoporetech/dorad
 ####### Set environment variables ###############
 module load python/3.10.4
 ####### Run your script #########################
-dorado basecaller --min-qscore 8 sup pod5/ > DL1_SodaLakes_basecalling.bam
+dorado basecaller --min-qscore 8 sup pod5/ > GE7_SodaLakes_basecalling.bam
 ```
 
 Basecalling output was:
@@ -43,7 +43,7 @@ The output of [dorado basecaller](https://github.com/nanoporetech/dorado) is *.b
 ####### Set environment variables ###############
 module load biobuilds/2017.11
 ####### Run your script #########################
-bedtools bamtofastq -i DL1_SodaLakes_basecalling.bam -fq DL1_SodaLakes_LongReads.fastq
+bedtools bamtofastq -i GE7_SodaLakes_basecalling.bam -fq GE7_SodaLakes_LongReads.fastq
 ```
 
 ### Long-reads QC using chopper
@@ -62,7 +62,7 @@ Following the recomendation on ["Assembling the perfect bacterial genome using O
 source ~/software/miniconda3/etc/profile.d/conda.sh
 conda activate lr_assemblers
 
-gunzip -c DL1_SodaLakes_LongReads.fastq.gz | chopper -q 10 -l 500 | gzip > Filtered_500_10_DL1_SodaLakes_LongReads.fastq.gz
+gunzip -c GE7_SodaLakes_LongReads.fastq.gz | chopper -q 10 -l 500 | gzip > Filtered_500_10_GE7_SodaLakes_LongReads.fastq.gz
 ```
 The output of the [chopper](https://github.com/wdecoster/chopper) filter is `Kept 4,699,424 reads out of 5,770,756 reads`
 
@@ -80,7 +80,7 @@ The assembly was performed using [metaMDBG](https://github.com/GaetanBenoitDev/m
 #SBATCH --partition=cpu2023
 # ======================================================================
 module load gcc/10.2.0 cmake/3.13.4 lib/zlib/1.2.11 openmpi/4.1.1-gnu
-metaMDBG asm --out-dir metaMDBG_assembly_DL1 --in-ont Filtered_500_10_DL1_SodaLakes_LongReads.fastq.gz --threads 8
+metaMDBG asm --out-dir metaMDBG_assembly_GE7 --in-ont Filtered_500_10_GE7_SodaLakes_LongReads.fastq.gz --threads 8
 ```
 
 The output of [metaMDGB](https://github.com/GaetanBenoitDev/metaMDBG) got 11 circular contigs >1MB
@@ -114,9 +114,9 @@ The input for [MEDAKA](https://github.com/nanoporetech/medaka) are the filtered 
 ####### Set environment variables ###############
 module load python/3.10.4
 ####### Run your script #########################
-gzip -d metaMDBG_assembly_DL1/contigs.fasta.gz
-medaka_consensus -i Filtered_500_10_DL1_SodaLakes_LongReads.fastq.gz -d metaMDBG_assembly_DL1/contigs.fasta \
--o medaka.DL1.assembly.out -t 6 --bacteria
+gzip -d metaMDBG_assembly_GE7/contigs.fasta.gz
+medaka_consensus -i Filtered_500_10_GE7_SodaLakes_LongReads.fastq.gz -d metaMDBG_assembly_GE7/contigs.fasta \
+-o medaka.GE7.assembly.out -t 6 --bacteria
 ```
 
 ### Assembly polishing using short-reads
@@ -138,13 +138,13 @@ The first step is polishing using [Polypolish](https://github.com/rrwick/Polypol
 ####### Set environment variables ###############
 module load biobuilds/2017.11
 ####### Run your script #########################
-bwa index medaka.DL1.assembly.out/consensus.fasta
-bwa mem -t 16 -a medaka.DL1.assembly.out/consensus.fasta ../../../RB_6/SR/Li50127-RS-DL-1-RT_S16_R1.fastq.gz > alignments_1.sam
-bwa mem -t 16 -a medaka.DL1.assembly.out/consensus.fasta ../../../RB_6/SR/Li50127-RS-DL-1-RT_S16_R2.fastq.gz > alignments_2.sam
+bwa index medaka.GE7.assembly.out/consensus.fasta
+bwa mem -t 16 -a medaka.GE7.assembly.out/consensus.fasta ../../../RB_6/SR/Li50127-RS-DL-1-RT_S16_R1.fastq.gz > alignments_1.sam
+bwa mem -t 16 -a medaka.GE7.assembly.out/consensus.fasta ../../../RB_6/SR/Li50127-RS-DL-1-RT_S16_R2.fastq.gz > alignments_2.sam
 
 ###### Polypolish insert size filter ############
 polypolish filter --in1 alignments_1.sam --in2 alignments_2.sam --out1 filtered_1.sam --out2 filtered_2.sam
-polypolish polish medaka.DL1.assembly.out/consensus.fasta filtered_1.sam filtered_2.sam > medaka.polypolish.DL1.assembly.fasta
+polypolish polish medaka.GE7.assembly.out/consensus.fasta filtered_1.sam filtered_2.sam > medaka.polypolish.GE7.assembly.fasta
 ```
 
 The second step was using [Pypolca](https://github.com/gbouras13/pypolca) on top of the polypolish output.
@@ -163,9 +163,9 @@ The second step was using [Pypolca](https://github.com/gbouras13/pypolca) on top
 source ~/software/miniconda3/etc/profile.d/conda.sh
 conda activate pypolca
 ####### Run your script #########################
-pypolca run -a medaka.polypolish.DL1.assembly.fasta \
+pypolca run -a medaka.polypolish.GE7.assembly.fasta \
 -1 ../../../RB_6/SR/Li50127-RS-DL-1-RT_S16_R1.fastq.gz -2 ../../../RB_6/SR/Li50127-RS-DL-1-RT_S16_R2.fastq.gz \
--t 12 -o medaka.polypolish.polca.DL1.assembly.fasta --careful
+-t 12 -o medaka.polypolish.polca.GE7.assembly.fasta --careful
 ```
 
 The report output of pypolca is the following:
@@ -197,16 +197,16 @@ source ~/software/miniconda3/etc/profile.d/conda.sh
 conda activate metawrap-env
 ###### Run your script #########################
 ##GunZIp in case are in .gz
-gunzip -c ../../../RB_6/SR/Li50127-RS-DL-1-RT_S16_R1.fastq.gz > DL1_SR_R1.fastq
-gunzip -c ../../../RB_6/SR/Li50127-RS-DL-1-RT_S16_R2.fastq.gz > DL1_SR_R2.fastq
+gunzip -c ../../../RB_6/SR/Li50127-RS-DL-1-RT_S16_R1.fastq.gz > GE7_SR_R1.fastq
+gunzip -c ../../../RB_6/SR/Li50127-RS-DL-1-RT_S16_R2.fastq.gz > GE7_SR_R2.fastq
 
 ## BINNING ##
-metawrap binning -o Binning_pypolca_DL1 -t 12 -a medaka.polypolish.polca.DL1.assembly.fasta/pypolca_corrected.fasta \
---metabat2 --maxbin2 --concoct -m 40 DL1_SR_R1.fastq DL1_SR_R2.fastq
+metawrap binning -o Binning_pypolca_GE7 -t 12 -a medaka.polypolish.polca.GE7.assembly.fasta/pypolca_corrected.fasta \
+--metabat2 --maxbin2 --concoct -m 40 GE7_SR_R1.fastq GE7_SR_R2.fastq
 
 ## BIN REFINEMENT ##
-metawrap bin_refinement -o Refinement_pypolca_DL1 -t 12 -A Binning_pypolca_DL1/metabat2_bins/ \
--B Binning_pypolca_DL1/maxbin2_bins/ -C Binning_pypolca_DL1/concoct_bins/ -c 50 -x 10 -m 40
+metawrap bin_refinement -o Refinement_pypolca_GE7 -t 12 -A Binning_pypolca_GE7/metabat2_bins/ \
+-B Binning_pypolca_GE7/maxbin2_bins/ -C Binning_pypolca_GE7/concoct_bins/ -c 50 -x 10 -m 40
 ```
 
 metaWRAP Refinement module generates **62 "good" bins** with contaminations score < 10% and completeness score > 50%. Seven bins were classified as Cyanobacteria from [CheckM](https://github.com/Ecogenomics/CheckM) dependency in metaWRAP. To know the number of contigs per bin in the assembled metagenome, I used to following unix command:
@@ -235,7 +235,7 @@ For taxonomic classification, I used [GTDB-Tk](https://github.com/Ecogenomics/GT
 source ~/software/miniconda3/etc/profile.d/conda.sh
 conda activate gtdbtk
 ####### Run your script #########################
-gtdbtk classify_wf --genome_dir Refinement_pypolca_DL1/metawrap_50_10_bins/ \
+gtdbtk classify_wf --genome_dir Refinement_pypolca_GE7/metawrap_50_10_bins/ \
 --out_dir gtdbtk_classify_wf --cpus 8 -x fa --skip_ani_screen
 ```
 
