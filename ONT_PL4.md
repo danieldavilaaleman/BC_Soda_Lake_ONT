@@ -3,7 +3,7 @@ In this section, I present the analysis conducted on ONT sequencing data obtaine
 samples collected from British Columbia, Soda Lakes sample **PL4**. The analysis was performed using a R10.4 MinION flow cell.
 
 ### Basecalling
-The sequencing run was performed using the Ligation Sequencing Kit V14 (SQK-LSK114) and 1 µg of HMW DNA. 72 pod5 files were obtained.
+The sequencing run was performed using the Ligation Sequencing Kit V14 (SQK-LSK114) and 1 µg of HMW DNA. 122 pod5 files were obtained.
 For basecalling, I run [dorado basecaller](https://github.com/nanoporetech/dorado) with the `sup` model and set a quality limit of 8 using GPU partition `bigmem gpu:1`
 ```
 #!/bin/bash
