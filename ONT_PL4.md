@@ -170,7 +170,7 @@ source ~/software/miniconda3/etc/profile.d/conda.sh
 conda activate pypolca
 ####### Run your script #########################
 pypolca run -a medaka.polypolish.PL4.assembly.fasta \
--1 ../../../RB_6/SR/Li50127-RS-DL-1-RT_S16_R1.fastq.gz -2 ../../../RB_6/SR/Li50127-RS-DL-1-RT_S16_R2.fastq.gz \
+-1 ../../../RS/PL4/SR/Li49152-RS-PL4-30C_S2_R1.fastq.gz -2 ../../../RS/PL4/SR/Li49152-RS-PL4-30C_S2_R2.fastq.gz \
 -t 12 -o medaka.polypolish.polca.PL4.assembly.fasta --careful
 ```
 
