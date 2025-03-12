@@ -139,8 +139,8 @@ The first step is polishing using [Polypolish](https://github.com/rrwick/Polypol
 module load biobuilds/2017.11
 ####### Run your script #########################
 bwa index medaka.PL4.assembly.out/consensus.fasta
-bwa mem -t 16 -a medaka.PL4.assembly.out/consensus.fasta ../../../RB_6/SR/Li50127-RS-DL-1-RT_S16_R1.fastq.gz > alignments_1.sam
-bwa mem -t 16 -a medaka.PL4.assembly.out/consensus.fasta ../../../RB_6/SR/Li50127-RS-DL-1-RT_S16_R2.fastq.gz > alignments_2.sam
+bwa mem -t 16 -a medaka.PL4.assembly.out/consensus.fasta ../../../RS/PL4/SR/Li49152-RS-PL4-30C_S2_R1.fastq.gz > alignments_1.sam
+bwa mem -t 16 -a medaka.PL4.assembly.out/consensus.fasta ../../../RS/PL4/SR/Li49152-RS-PL4-30C_S2_R2.fastq.gz > alignments_2.sam
 
 ###### Polypolish insert size filter ############
 polypolish filter --in1 alignments_1.sam --in2 alignments_2.sam --out1 filtered_1.sam --out2 filtered_2.sam
