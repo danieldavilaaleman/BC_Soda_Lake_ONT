@@ -178,11 +178,11 @@ The report output of pypolca is the following:
 
 |Stats BEFORE polishing| Value |
 |--------|--------|
-|Substitution Errors Found:| 296,847|
-|Insertion/Deletion Errors Found:| 113,225|
-|Assembly Size:| 362,803,214|
-|Consensus Quality Before Polishing:| 99.89|
-|Consensus QV Before Polishing:| 29.47|
+|Substitution Errors Found:| 380,482|
+|Insertion/Deletion Errors Found:| 65375|
+|Assembly Size:| 212,853,859|
+|Consensus Quality Before Polishing:| 99.79|
+|Consensus QV Before Polishing:| 26.79|
 
 ### Binning and Refinement of the assembly
 
