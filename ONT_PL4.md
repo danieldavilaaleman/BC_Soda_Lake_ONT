@@ -178,11 +178,11 @@ The report output of pypolca is the following:
 
 |Stats BEFORE polishing| Value |
 |--------|--------|
-|Substitution Errors Found:| 296,847|
-|Insertion/Deletion Errors Found:| 113,225|
-|Assembly Size:| 362,803,214|
-|Consensus Quality Before Polishing:| 99.89|
-|Consensus QV Before Polishing:| 29.47|
+|Substitution Errors Found:| 182,504|
+|Insertion/Deletion Errors Found:| 81,511|
+|Assembly Size:| 300,315,466 |
+|Consensus Quality Before Polishing:| 99.91|
+|Consensus QV Before Polishing:| 30.56|
 
 ### Binning and Refinement of the assembly
 
@@ -203,8 +203,8 @@ source ~/software/miniconda3/etc/profile.d/conda.sh
 conda activate metawrap-env
 ###### Run your script #########################
 ##GunZIp in case are in .gz
-gunzip -c ../../../RB_6/SR/Li50127-RS-DL-1-RT_S16_R1.fastq.gz > PL4_SR_R1.fastq
-gunzip -c ../../../RB_6/SR/Li50127-RS-DL-1-RT_S16_R2.fastq.gz > PL4_SR_R2.fastq
+gunzip -c ../../../RS/PL4/SR/Li49152-RS-PL4-30C_S2_R1.fastq.gz > PL4_SR_R1.fastq
+gunzip -c ../../../RS/PL4/SR/Li49152-RS-PL4-30C_S2_R2.fastq.gz> PL4_SR_R2.fastq
 
 ## BINNING ##
 metawrap binning -o Binning_pypolca_PL4 -t 12 -a medaka.polypolish.polca.PL4.assembly.fasta/pypolca_corrected.fasta \
