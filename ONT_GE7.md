@@ -203,8 +203,8 @@ source ~/software/miniconda3/etc/profile.d/conda.sh
 conda activate metawrap-env
 ###### Run your script #########################
 ##GunZIp in case are in .gz
-gunzip -c ../../../RB_6/SR/Li50127-RS-DL-1-RT_S16_R1.fastq.gz > GE7_SR_R1.fastq
-gunzip -c ../../../RB_6/SR/Li50127-RS-DL-1-RT_S16_R2.fastq.gz > GE7_SR_R2.fastq
+gunzip -c ../../GE7/SR/Li49154-RS-GE7-RT_S4_R1.fastq.gz > GE7_SR_R1.fastq
+gunzip -c ../../GE7/SR/Li49154-RS-GE7-RT_S4_R1.fastq.gz > GE7_SR_R2.fastq
 
 ## BINNING ##
 metawrap binning -o Binning_pypolca_GE7 -t 12 -a medaka.polypolish.polca.GE7.assembly.fasta/pypolca_corrected.fasta \
